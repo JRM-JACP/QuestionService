@@ -1,0 +1,73 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-question
+      author: Denis
+      changes:
+        - createTable:
+            tableName: question
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: problem
+                  type: varchar(100)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(800)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: import
+                  type: varchar(800)
+              - column:
+                  name: body
+                  type: varchar(800)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: test
+                  type: varchar(800)
+                  constraints:
+                    nullable: false
+        - loadData:
+            encoding: UTF-8
+            separator: /
+            quotchar: ''''
+            usePreparedStatements: true
+            tableName: question
+            file: db/changelog/question.csv
+            columns:
+              - column:
+                  header: Problem
+                  name: problem
+                  type: varchar(200)
+              - column:
+                  header: Description
+                  name: description
+                  type: varchar(800)
+                  constraints:
+                    nullable: false
+              - column:
+                  header: Test
+                  name: test
+                  type: varchar(800)
+                  constraints:
+                    nullable: false
+              - column:
+                  header: Import
+                  name: import
+                  type: varchar(800)
+              - column:
+                  header: Body
+                  name: body
+                  type: varchar(800)
+                  constraints:
+                    nullable: false
