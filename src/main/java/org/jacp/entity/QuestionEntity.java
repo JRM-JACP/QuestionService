@@ -1,4 +1,4 @@
-package ru.javaroadmap.questionservice.entity;
+package org.jacp.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,7 +11,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Question {
+public class QuestionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,5 +20,17 @@ public class Question {
     private String problem;
 
     @Column(nullable = false)
+    private String difference;
+
+    @Column(nullable = false)
     private String description;
+
+    @Column
+    private String imports;
+
+    @Column(nullable = false)
+    private String body;
+
+    @Column(nullable = false)
+    private String test;
 }

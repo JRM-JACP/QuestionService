@@ -4,13 +4,14 @@ databaseChangeLog:
       author: Denis
       changes:
         - createTable:
-            tableName: question
+            tableName: question_entity
             columns:
               - column:
                   name: id
                   type: bigint
                   autoIncrement: true
                   constraints:
+                    unique: true
                     primaryKey: true
                     nullable: false
               - column:
@@ -20,12 +21,22 @@ databaseChangeLog:
                     unique: true
                     nullable: false
               - column:
+                  name: difference
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tags
+                  type: varchar(15)
+                  constraints:
+                    nullable: false
+              - column:
                   name: description
                   type: varchar(800)
                   constraints:
                     nullable: false
               - column:
-                  name: import
+                  name: imports
                   type: varchar(800)
               - column:
                   name: body
@@ -42,13 +53,27 @@ databaseChangeLog:
             separator: /
             quotchar: ''''
             usePreparedStatements: true
-            tableName: question
+            tableName: question_entity
             file: db/changelog/question.csv
             columns:
               - column:
                   header: Problem
                   name: problem
                   type: varchar(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  header: Difference
+                  name: difference
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  header: Tags
+                  name: tags
+                  type: varchar(15)
+                  constraints:
+                    nullable: false
               - column:
                   header: Description
                   name: description
@@ -56,18 +81,18 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  header: Test
-                  name: test
-                  type: varchar(800)
-                  constraints:
-                    nullable: false
-              - column:
-                  header: Import
-                  name: import
+                  header: Imports
+                  name: imports
                   type: varchar(800)
               - column:
                   header: Body
                   name: body
+                  type: varchar(800)
+                  constraints:
+                    nullable: false
+              - column:
+                  header: Test
+                  name: test
                   type: varchar(800)
                   constraints:
                     nullable: false
