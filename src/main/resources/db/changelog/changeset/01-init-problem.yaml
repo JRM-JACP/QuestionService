@@ -21,7 +21,7 @@ databaseChangeLog:
                     unique: true
                     nullable: false
               - column:
-                  name: difference
+                  name: difficult
                   type: varchar(50)
                   constraints:
                     nullable: false
@@ -63,8 +63,8 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  header: Difference
-                  name: difference
+                  header: Difficult
+                  name: difficult
                   type: varchar(50)
                   constraints:
                     nullable: false

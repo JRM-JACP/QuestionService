@@ -20,7 +20,7 @@ public class QuestionEntity {
     private String problem;
 
     @Column(nullable = false)
-    private String difference;
+    private String difficult;
 
     @Column(nullable = false)
     private String description;

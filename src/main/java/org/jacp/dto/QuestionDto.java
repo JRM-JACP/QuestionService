@@ -17,7 +17,7 @@ public class QuestionDto {
 
     private String problem;
 
-    private String difference;
+    private String difficult;
 
     private String description;
 
