@@ -4,6 +4,7 @@ import org.jacp.entity.QuestionEntity;
 import org.jacp.error.NoEntityException;
 import org.jacp.repository.QuestionRepository;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -28,16 +29,18 @@ class QuestionServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    @Test
-    void get() {
-        QuestionEntity questionEntity = new QuestionEntity();
-        Long questionId = 1L;
-        String problem = "TestProblem";
-        String difficult = "TestDifficult";
-        String description = "TestDescription";
-        String imports = "TestImports";
-        String body = "TestBody";
-        String test = "TestTest";
+    static QuestionEntity questionEntity = new QuestionEntity();
+    static Long questionId = 1L;
+    static String problem = "TestProblem";
+    static String difficult = "TestDifficult";
+    static String description = "TestDescription";
+    static String imports = "TestImports";
+    static String body = "TestBody";
+    static String test = "TestTest";
+
+
+    @BeforeAll
+    static void prepareData() {
         questionEntity.setId(questionId);
         questionEntity.setProblem(problem);
         questionEntity.setDifficult(difficult);
@@ -45,30 +48,17 @@ class QuestionServiceTest {
         questionEntity.setImports(imports);
         questionEntity.setBody(body);
         questionEntity.setTest(test);
+    }
 
+    @Test
+    void getQuestionByIdTestService() {
         Mockito.when(questionRepository.findById(questionId)).thenReturn(Optional.of(questionEntity));
         QuestionEntity result = questionService.get(questionId);
         Assertions.assertEquals(questionEntity, result);
     }
 
     @Test
-    void getNull(){
-        QuestionEntity questionEntity = new QuestionEntity();
-        Long questionId = 1L;
-        String problem = "TestProblem";
-        String difficult = "TestDifficult";
-        String description = "TestDescription";
-        String imports = "TestImports";
-        String body = "TestBody";
-        String test = "TestTest";
-        questionEntity.setId(questionId);
-        questionEntity.setProblem(problem);
-        questionEntity.setDifficult(difficult);
-        questionEntity.setDescription(description);
-        questionEntity.setImports(imports);
-        questionEntity.setBody(body);
-        questionEntity.setTest(test);
-
+    void getNullQuestionByIdTestService(){
         Mockito.when(questionRepository.findById(questionId)).thenReturn(Optional.empty());
         Assertions.assertThrows(NoEntityException.class, () -> questionService.get(questionId));
     }
