@@ -41,7 +41,7 @@ class QuestionControllerTest {
     }
 
     @Test
-    void get() throws Exception {
+    void getQuestionByIdTest() throws Exception {
         QuestionEntity questionEntity = new QuestionEntity();
         QuestionDto questionDto = new QuestionDto();
         Long questionId = 1L;
