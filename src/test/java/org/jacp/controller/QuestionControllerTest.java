@@ -2,6 +2,7 @@ package org.jacp.controller;
 
 import org.jacp.dto.QuestionDto;
 import org.jacp.entity.QuestionEntity;
+import org.jacp.enums.Difficult;
 import org.jacp.mapper.QuestionMapper;
 import org.jacp.service.QuestionService;
 import org.junit.jupiter.api.BeforeEach;
@@ -46,7 +47,7 @@ class QuestionControllerTest {
         QuestionDto questionDto = new QuestionDto();
         Long questionId = 1L;
         String problem = "TestProblem";
-        String difficult = "TestDifficult";
+        Difficult difficult = Difficult.EASY;
         String description = "TestDescription";
         String imports = "TestImports";
         String body = "TestBody";
@@ -60,7 +61,7 @@ class QuestionControllerTest {
         questionEntity.setTest(test);
         questionDto.setId(questionId);
         questionDto.setProblem(problem);
-        questionDto.setDifficult(difficult);
+        questionDto.setDifficult("EASY");
         questionDto.setDescription(description);
         questionDto.setImports(imports);
         questionDto.setBody(body);
@@ -73,7 +74,7 @@ class QuestionControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(questionId))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.problem").value(problem))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.difficult").value(difficult))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.difficult").value("EASY"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.description").value(description))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.imports").value(imports))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.body").value(body))

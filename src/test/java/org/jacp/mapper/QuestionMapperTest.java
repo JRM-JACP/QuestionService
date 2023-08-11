@@ -2,6 +2,7 @@ package org.jacp.mapper;
 
 import org.jacp.dto.QuestionDto;
 import org.jacp.entity.QuestionEntity;
+import org.jacp.enums.Difficult;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -27,7 +28,7 @@ class QuestionMapperTest {
     void questionToQuestionDto() {
         Mockito.when(questionEntity.getId()).thenReturn(1L);
         Mockito.when(questionEntity.getProblem()).thenReturn("TestProblem");
-        Mockito.when(questionEntity.getDifficult()).thenReturn("TestDifficult");
+        Mockito.when(questionEntity.getDifficult()).thenReturn(Difficult.EASY);
         Mockito.when(questionEntity.getDescription()).thenReturn("TestDescription");
         Mockito.when(questionEntity.getImports()).thenReturn("TestImports");
         Mockito.when(questionEntity.getBody()).thenReturn("TestBody");
@@ -35,7 +36,7 @@ class QuestionMapperTest {
         QuestionDto questionDto = questionMapper.questionToQuestionDto(questionEntity);
         assertEquals(1L, questionDto.getId());
         assertEquals("TestProblem", questionDto.getProblem());
-        assertEquals("TestDifficult", questionDto.getDifficult());
+        assertEquals("EASY", questionDto.getDifficult());
         assertEquals("TestDescription", questionDto.getDescription());
         assertEquals("TestImports", questionDto.getImports());
         assertEquals("TestBody", questionDto.getBody());

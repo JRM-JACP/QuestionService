@@ -1,6 +1,7 @@
 package org.jacp.service;
 
 import org.jacp.entity.QuestionEntity;
+import org.jacp.enums.Difficult;
 import org.jacp.error.NoEntityException;
 import org.jacp.repository.QuestionRepository;
 import org.junit.jupiter.api.Assertions;
@@ -32,7 +33,7 @@ class QuestionServiceTest {
     static QuestionEntity questionEntity = new QuestionEntity();
     static Long questionId = 1L;
     static String problem = "TestProblem";
-    static String difficult = "TestDifficult";
+    static Difficult difficult = Difficult.EASY;
     static String description = "TestDescription";
     static String imports = "TestImports";
     static String body = "TestBody";

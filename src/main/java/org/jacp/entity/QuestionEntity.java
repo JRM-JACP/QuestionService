@@ -2,6 +2,7 @@ package org.jacp.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.jacp.enums.Difficult;
 
 /**
  * @author saffchen created on 30.07.2023
@@ -11,6 +12,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "question")
 public class QuestionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +22,8 @@ public class QuestionEntity {
     private String problem;
 
     @Column(nullable = false)
-    private String difficult;
+    @Enumerated(EnumType.STRING)
+    private Difficult difficult;
 
     @Column(nullable = false)
     private String description;
