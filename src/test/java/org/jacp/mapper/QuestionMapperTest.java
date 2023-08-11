@@ -25,13 +25,13 @@ class QuestionMapperTest {
 
     @Test
     void questionToQuestionDto() {
-        Mockito.doReturn(1L).when(questionEntity).getId();
-        Mockito.doReturn("TestProblem").when(questionEntity).getProblem();
-        Mockito.doReturn("TestDifficult").when(questionEntity).getDifficult();
-        Mockito.doReturn("TestDescription").when(questionEntity).getDescription();
-        Mockito.doReturn("TestImports").when(questionEntity).getImports();
-        Mockito.doReturn("TestBody").when(questionEntity).getBody();
-        Mockito.doReturn("TestTest").when(questionEntity).getTest();
+        Mockito.when(questionEntity.getId()).thenReturn(1L);
+        Mockito.when(questionEntity.getProblem()).thenReturn("TestProblem");
+        Mockito.when(questionEntity.getDifficult()).thenReturn("TestDifficult");
+        Mockito.when(questionEntity.getDescription()).thenReturn("TestDescription");
+        Mockito.when(questionEntity.getImports()).thenReturn("TestImports");
+        Mockito.when(questionEntity.getBody()).thenReturn("TestBody");
+        Mockito.when(questionEntity.getTest()).thenReturn("TestTest");
         QuestionDto questionDto = questionMapper.questionToQuestionDto(questionEntity);
         assertEquals(1L, questionDto.getId());
         assertEquals("TestProblem", questionDto.getProblem());

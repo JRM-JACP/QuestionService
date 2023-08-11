@@ -66,7 +66,7 @@ class QuestionControllerTest {
         questionDto.setBody(body);
         questionDto.setTest(test);
 
-        Mockito.doReturn(questionEntity).when(questionService).get(questionId);
+        Mockito.when(questionService.get(questionId)).thenReturn(questionEntity);
         Mockito.when(questionMapper.questionToQuestionDto(questionEntity)).thenReturn(questionDto);
 
         mockMvc.perform(MockMvcRequestBuilders.get(URL + "/" + questionId))

@@ -13,8 +13,6 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * @author saffchen created on 10.08.2023
  */
@@ -48,7 +46,7 @@ class QuestionServiceTest {
         questionEntity.setBody(body);
         questionEntity.setTest(test);
 
-        Mockito.doReturn(Optional.of(questionEntity)).when(questionRepository).findById(questionId);
+        Mockito.when(questionRepository.findById(questionId)).thenReturn(Optional.of(questionEntity));
         QuestionEntity result = questionService.get(questionId);
         Assertions.assertEquals(questionEntity, result);
     }
@@ -71,7 +69,7 @@ class QuestionServiceTest {
         questionEntity.setBody(body);
         questionEntity.setTest(test);
 
-        Mockito.doReturn(Optional.empty()).when(questionRepository).findById(questionId);
+        Mockito.when(questionRepository.findById(questionId)).thenReturn(Optional.empty());
         Assertions.assertThrows(NoEntityException.class, () -> questionService.get(questionId));
     }
 }
