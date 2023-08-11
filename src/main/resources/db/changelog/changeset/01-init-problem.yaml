@@ -4,7 +4,7 @@ databaseChangeLog:
       author: Denis
       changes:
         - createTable:
-            tableName: question_entity
+            tableName: question
             columns:
               - column:
                   name: id
@@ -53,7 +53,7 @@ databaseChangeLog:
             separator: /
             quotchar: ''''
             usePreparedStatements: true
-            tableName: question_entity
+            tableName: question
             file: db/changelog/question.csv
             columns:
               - column:
