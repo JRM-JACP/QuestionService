@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * @author saffchen created on 04.08.2023
  */
-public class AbstractStoreController {
+public class AbstractQuestionController {
 
     @Autowired
     QuestionService questionService;

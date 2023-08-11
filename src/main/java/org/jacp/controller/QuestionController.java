@@ -12,7 +12,7 @@ import org.jacp.entity.QuestionEntity;
 
 @RestController
 @RequestMapping(value = QuestionController.URL, produces = MediaType.APPLICATION_JSON_VALUE)
-public class QuestionController extends AbstractStoreController {
+public class QuestionController extends AbstractQuestionController {
     static final String URL = "/api/v1/questions";
 
     @GetMapping("/{questionId}")
