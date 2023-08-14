@@ -10,10 +10,10 @@ import java.net.URI;
 import java.time.Instant;
 
 @RestControllerAdvice
-public class GlobalExceptionHandler  extends ResponseEntityExceptionHandler {
+public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(NoEntityException.class)
-    ProblemDetail handleNoEntityException(NoEntityException e){
+    ProblemDetail handleNoEntityException(NoEntityException e) {
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
         problemDetail.setTitle("Question is not found");
         problemDetail.setType(URI.create("https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.4"));

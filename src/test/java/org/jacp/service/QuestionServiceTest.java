@@ -63,7 +63,7 @@ class QuestionServiceTest {
     }
 
     @Test
-    void getNullQuestionByIdTestService(){
+    void getNullQuestionByIdTestService() {
         Mockito.when(questionRepository.findById(questionId)).thenReturn(Optional.empty());
         Assertions.assertThrows(NoEntityException.class, () -> questionService.get(questionId));
     }

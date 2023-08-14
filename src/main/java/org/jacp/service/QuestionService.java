@@ -15,7 +15,7 @@ public class QuestionService {
 
     private QuestionRepository questionRepository;
 
-    public QuestionEntity get(Long id) throws NoEntityException{
+    public QuestionEntity get(Long id) throws NoEntityException {
         return questionRepository.findById(id)
                 .orElseThrow(() -> new NoEntityException("Question with id " + id + " is not found"));
     }
