@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-question-tags
+      author: Denis
+      changes:
+        - createTable:
+            tableName: question_tags
+            columns:
+              - column:
+                  name: question_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tags
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
