@@ -2,7 +2,7 @@ package org.jacp.controller;
 
 import org.jacp.dto.QuestionDto;
 import org.jacp.entity.QuestionEntity;
-import org.jacp.enums.Difficult;
+import org.jacp.enums.Difficulty;
 import org.jacp.mapper.QuestionMapper;
 import org.jacp.service.QuestionService;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,6 +16,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author saffchen created on 10.08.2023
@@ -37,7 +40,7 @@ class QuestionControllerTest {
     private MockMvc mockMvc;
 
     @BeforeEach
-    public void setup(){
+    public void setup() {
         mockMvc = MockMvcBuilders.standaloneSetup(questionController).build();
     }
 
@@ -45,23 +48,28 @@ class QuestionControllerTest {
     void getQuestionByIdTest() throws Exception {
         QuestionEntity questionEntity = new QuestionEntity();
         QuestionDto questionDto = new QuestionDto();
+        List<String> tags = new ArrayList<>();
+        tags.add("MATH");
+        tags.add("STRING");
         Long questionId = 1L;
         String problem = "TestProblem";
-        Difficult difficult = Difficult.EASY;
+        Difficulty difficulty = Difficulty.EASY;
         String description = "TestDescription";
         String imports = "TestImports";
         String body = "TestBody";
         String test = "TestTest";
         questionEntity.setId(questionId);
         questionEntity.setProblem(problem);
-        questionEntity.setDifficult(difficult);
+        questionEntity.setDifficulty(difficulty);
+        questionEntity.setTags(tags);
         questionEntity.setDescription(description);
         questionEntity.setImports(imports);
         questionEntity.setBody(body);
         questionEntity.setTest(test);
         questionDto.setId(questionId);
         questionDto.setProblem(problem);
-        questionDto.setDifficult("EASY");
+        questionDto.setDifficulty("EASY");
+        questionDto.setTags(tags);
         questionDto.setDescription(description);
         questionDto.setImports(imports);
         questionDto.setBody(body);
@@ -74,7 +82,8 @@ class QuestionControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(questionId))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.problem").value(problem))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.difficult").value("EASY"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.difficulty").value("EASY"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.tags").value(tags))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.description").value(description))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.imports").value(imports))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.body").value(body))

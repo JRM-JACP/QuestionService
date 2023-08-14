@@ -2,7 +2,9 @@ package org.jacp.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.jacp.enums.Difficult;
+import org.jacp.enums.Difficulty;
+
+import java.util.List;
 
 /**
  * @author saffchen created on 30.07.2023
@@ -16,6 +18,7 @@ import org.jacp.enums.Difficult;
 public class QuestionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Column(nullable = false)
@@ -23,7 +26,12 @@ public class QuestionEntity {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private Difficult difficult;
+    private Difficulty difficulty;
+
+    @Column(nullable = false)
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "question_tags", joinColumns = @JoinColumn(name = "question_id"))
+    private List<String> tags;
 
     @Column(nullable = false)
     private String description;

@@ -1,0 +1,50 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-question
+      author: Denis
+      changes:
+        - createTable:
+            tableName: question
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    unique: true
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: problem
+                  type: varchar(100)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: difficulty
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tags
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(800)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: imports
+                  type: varchar(800)
+              - column:
+                  name: body
+                  type: varchar(800)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: test
+                  type: varchar(800)
+                  constraints:
+                    nullable: false

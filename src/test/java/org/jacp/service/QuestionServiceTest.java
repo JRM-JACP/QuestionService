@@ -1,7 +1,7 @@
 package org.jacp.service;
 
 import org.jacp.entity.QuestionEntity;
-import org.jacp.enums.Difficult;
+import org.jacp.enums.Difficulty;
 import org.jacp.error.NoEntityException;
 import org.jacp.repository.QuestionRepository;
 import org.junit.jupiter.api.Assertions;
@@ -13,6 +13,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -33,7 +35,8 @@ class QuestionServiceTest {
     static QuestionEntity questionEntity = new QuestionEntity();
     static Long questionId = 1L;
     static String problem = "TestProblem";
-    static Difficult difficult = Difficult.EASY;
+    static Difficulty difficulty = Difficulty.EASY;
+    static List<String> tags = Arrays.asList("MATH", "STRING");
     static String description = "TestDescription";
     static String imports = "TestImports";
     static String body = "TestBody";
@@ -44,7 +47,8 @@ class QuestionServiceTest {
     static void prepareData() {
         questionEntity.setId(questionId);
         questionEntity.setProblem(problem);
-        questionEntity.setDifficult(difficult);
+        questionEntity.setDifficulty(difficulty);
+        questionEntity.setTags(tags);
         questionEntity.setDescription(description);
         questionEntity.setImports(imports);
         questionEntity.setBody(body);
