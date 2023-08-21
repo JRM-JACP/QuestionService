@@ -56,7 +56,7 @@ databaseChangeLog:
       author: Denis
       changes:
         - loadData:
-            separator: /
+            separator: ;
             quotchar: ''''
             usePreparedStatements: true
             tableName: question_tags
