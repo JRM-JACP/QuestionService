@@ -3,6 +3,7 @@ package org.jacp.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.jacp.enums.Difficulty;
+import org.jacp.enums.Tags;
 
 import java.util.List;
 
@@ -30,8 +31,9 @@ public class QuestionEntity {
 
     @Column(nullable = false)
     @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
     @CollectionTable(name = "question_tags", joinColumns = @JoinColumn(name = "question_id"))
-    private List<String> tags;
+    private List<Tags> tags;
 
     @Column(nullable = false)
     private String description;

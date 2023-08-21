@@ -3,6 +3,7 @@ package org.jacp.controller;
 import org.jacp.dto.QuestionDto;
 import org.jacp.entity.QuestionEntity;
 import org.jacp.enums.Difficulty;
+import org.jacp.enums.Tags;
 import org.jacp.mapper.QuestionMapper;
 import org.jacp.service.QuestionService;
 import org.junit.jupiter.api.BeforeEach;
@@ -48,9 +49,9 @@ class QuestionControllerTest {
     void getQuestionByIdTest() throws Exception {
         QuestionEntity questionEntity = new QuestionEntity();
         QuestionDto questionDto = new QuestionDto();
-        List<String> tags = new ArrayList<>();
-        tags.add("MATH");
-        tags.add("STRING");
+        List<Tags> tags = new ArrayList<>();
+        tags.add(Tags.MATH);
+        tags.add(Tags.STRING);
         Long questionId = 1L;
         String problem = "TestProblem";
         Difficulty difficulty = Difficulty.EASY;
@@ -68,8 +69,8 @@ class QuestionControllerTest {
         questionEntity.setTest(test);
         questionDto.setId(questionId);
         questionDto.setProblem(problem);
-        questionDto.setDifficulty("EASY");
-        questionDto.setTags(tags);
+        questionDto.setDifficulty(difficulty.toString());
+        questionDto.setTags(List.of(tags.toString()));
         questionDto.setDescription(description);
         questionDto.setImports(imports);
         questionDto.setBody(body);
@@ -82,8 +83,8 @@ class QuestionControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(questionId))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.problem").value(problem))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.difficulty").value("EASY"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.tags").value(tags))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.difficulty").value(difficulty.toString()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.tags").value(tags.toString()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.description").value(description))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.imports").value(imports))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.body").value(body))
