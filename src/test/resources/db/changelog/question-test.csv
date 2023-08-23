@@ -1,0 +1,2 @@
+Problem/Difficulty/Tags/Description/Imports/Body/Test
+Grasshopper/EASY/MATH; STRING/Base mathematical operation//public class plusOperation(int a, int b) { return 2+2 }/public class testPlusOperation

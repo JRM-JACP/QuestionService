@@ -1,0 +1,72 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-table-question
+      author: Denis
+      changes:
+        - loadData:
+            encoding: UTF-8
+            separator: /
+            quotchar: ''''
+            usePreparedStatements: true
+            tableName: question
+            file: db/changelog/question-test.csv
+            columns:
+              - column:
+                  header: Problem
+                  name: problem
+                  type: varchar(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  header: Difficulty
+                  name: difficulty
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  header: Tags
+                  name: tags
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  header: Description
+                  name: description
+                  type: varchar(800)
+                  constraints:
+                    nullable: false
+              - column:
+                  header: Imports
+                  name: imports
+                  type: varchar(800)
+              - column:
+                  header: Body
+                  name: body
+                  type: varchar(800)
+                  constraints:
+                    nullable: false
+              - column:
+                  header: Test
+                  name: test
+                  type: varchar(800)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: add-table-question-tags
+      author: Denis
+      changes:
+        - loadData:
+            separator: ;
+            quotchar: ''''
+            usePreparedStatements: true
+            tableName: question_tags
+            file: db/changelog/question_tags-tags.csv
+            columns:
+              - column:
+                  header: QuestionId
+                  name: question_id
+                  type: NUMERIC
+              - column:
+                  header: Tags
+                  name: tags
+                  type: varchar(30)
