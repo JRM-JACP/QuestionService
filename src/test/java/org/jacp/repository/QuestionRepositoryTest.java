@@ -1,32 +1,32 @@
 package org.jacp.repository;
 
+import org.jacp.IntegrationTestBase;
 import org.jacp.entity.QuestionEntity;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.testcontainers.junit.jupiter.Testcontainers;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author saffchen created on 22.08.2023
  */
-@Testcontainers
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("test")
-class QuestionRepositoryTest {
+@Sql("/sql/data.sql")
+class QuestionRepositoryTest extends IntegrationTestBase {
     @Autowired
-    QuestionRepository questionRepository;
+    private QuestionRepository questionRepository;
+
+    private static final Long QUESTION_ID = 1L;
 
     @Test
     void testFindById() {
-        Long id = 1L;
-        Optional<QuestionEntity> optionalQuestion = questionRepository.findById(id);
+        Optional<QuestionEntity> optionalQuestion = questionRepository.findById(QUESTION_ID);
         assertTrue(optionalQuestion.isPresent());
-        QuestionEntity question = optionalQuestion.get();
-        assertEquals(id, question.getId());
-        assertEquals("Grasshopper", question.getProblem());
+        optionalQuestion.ifPresent(entity -> {
+            assertEquals(QUESTION_ID, entity.getId());
+            assertEquals("Grasshopper", entity.getProblem());
+        });
     }
 }
