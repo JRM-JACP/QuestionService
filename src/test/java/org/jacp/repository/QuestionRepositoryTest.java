@@ -1,6 +1,6 @@
 package org.jacp.repository;
 
-import org.jacp.IntegrationTestBase;
+import org.jacp.AbstractIntegrationTestBase;
 import org.jacp.entity.QuestionEntity;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author saffchen created on 22.08.2023
  */
 @Sql("/sql/data.sql")
-class QuestionRepositoryTest extends IntegrationTestBase {
+class QuestionRepositoryTest extends AbstractIntegrationTestBase {
     @Autowired
     private QuestionRepository questionRepository;
 

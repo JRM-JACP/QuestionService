@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @ContextConfiguration(initializers = Postgres.Initializer.class)
 @SpringBootTest
-public abstract class IntegrationTestBase {
+public abstract class AbstractIntegrationTestBase {
     @BeforeAll
     public static void init(){
         Postgres.container.start();
