@@ -13,14 +13,15 @@ import org.testcontainers.containers.PostgreSQLContainer;
 public class Postgres {
     public static final PostgreSQLContainer<?> container = new PostgreSQLContainer<>("postgres:14.4-alpine")
             .withDatabaseName("foo");
-    public static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext>{
+
+    public static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
         @Override
         public void initialize(ConfigurableApplicationContext applicationContext) {
             TestPropertyValues.of(
                     "spring.datasource.url=" + container.getJdbcUrl(),
                     "spring.datasource.username=" + container.getUsername(),
                     "spring.datasource.password=" + container.getPassword()
-                    ).applyTo(applicationContext);
+            ).applyTo(applicationContext);
         }
     }
 }
