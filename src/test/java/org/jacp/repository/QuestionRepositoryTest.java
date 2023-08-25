@@ -15,8 +15,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author saffchen created on 22.08.2023
  */
 @SqlGroup({
-        @Sql("/sql/questionRepositoryDropData.sql"),
-        @Sql("/sql/questionRepositoryData.sql")
+        @Sql("/sql/repository/questionRepositoryDropData.sql"),
+        @Sql("/sql/repository/questionRepositoryData.sql")
 })
 class QuestionRepositoryTest extends AbstractIntegrationTestBase {
     @Autowired
