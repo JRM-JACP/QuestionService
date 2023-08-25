@@ -5,6 +5,7 @@ import org.jacp.entity.QuestionEntity;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.SqlGroup;
 
 import java.util.Optional;
 
@@ -13,7 +14,10 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * @author saffchen created on 22.08.2023
  */
-@Sql("/sql/data.sql")
+@SqlGroup({
+        @Sql("/sql/dropData.sql"),
+        @Sql("/sql/data.sql")
+})
 class QuestionRepositoryTest extends AbstractIntegrationTestBase {
     @Autowired
     private QuestionRepository questionRepository;
