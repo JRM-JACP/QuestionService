@@ -10,7 +10,5 @@ import org.jacp.entity.QuestionEntity;
  */
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.FIELD)
 public interface QuestionMapper {
-
     QuestionDto questionToQuestionDto(QuestionEntity questionEntity);
-
 }
