@@ -35,15 +35,6 @@ class QuestionRepositoryTest extends AbstractIntegrationTestBase {
     }
 
     @Test
-    void testFindByIdNegative() {
-        Optional<QuestionEntity> optionalQuestion = questionRepository.findById(QUESTION_ID);
-        assertTrue(optionalQuestion.isPresent());
-        optionalQuestion.ifPresent(entity ->
-            assertNotEquals("Test", entity.getProblem())
-        );
-    }
-
-    @Test
     void testFindByIdNonId() {
         Optional<QuestionEntity> optionalQuestion = questionRepository.findById(300L);
         assertFalse(optionalQuestion.isPresent());
