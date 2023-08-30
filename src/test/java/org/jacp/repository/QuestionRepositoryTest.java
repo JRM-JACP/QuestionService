@@ -42,4 +42,10 @@ class QuestionRepositoryTest extends AbstractIntegrationTestBase {
             assertNotEquals("Test", entity.getProblem())
         );
     }
+
+    @Test
+    void testFindByIdNonId() {
+        Optional<QuestionEntity> optionalQuestion = questionRepository.findById(300L);
+        assertFalse(optionalQuestion.isPresent());
+    }
 }
