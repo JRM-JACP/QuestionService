@@ -33,4 +33,10 @@ class QuestionRepositoryTest extends AbstractIntegrationTestBase {
             assertEquals("Grasshopper", entity.getProblem());
         });
     }
+
+    @Test
+    void testFindByIdNonId() {
+        Optional<QuestionEntity> optionalQuestion = questionRepository.findById(300L);
+        assertFalse(optionalQuestion.isPresent());
+    }
 }
