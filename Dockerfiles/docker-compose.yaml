@@ -9,12 +9,13 @@ services:
       - QUESTION_DB_PASSWORD=docker
       - QUESTION_DB_NAME=question
     volumes:
-      - ./db:/docker-entrypoint-initdb.d/
+      - ./db/init:/docker-entrypoint-initdb.d/
     ports:
       - '5432:5432'
   app:
+    container_name: QuestionServiceApp
     build:
-      dockerfile: Dockerfile
+      context: ./QuestionService
     depends_on:
       - postgres
     environment:
