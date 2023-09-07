@@ -36,7 +36,6 @@ class QuestionMapperTest {
         Mockito.when(questionEntity.getDifficulty()).thenReturn(Difficulty.EASY);
         Mockito.when(questionEntity.getTags()).thenReturn(List.of(Tags.MATH, Tags.STRING));
         Mockito.when(questionEntity.getDescription()).thenReturn("TestDescription");
-        Mockito.when(questionEntity.getImports()).thenReturn("TestImports");
         Mockito.when(questionEntity.getBody()).thenReturn("TestBody");
         Mockito.when(questionEntity.getTest()).thenReturn("TestTest");
         QuestionDto questionDto = questionMapper.questionToQuestionDto(questionEntity);
@@ -45,7 +44,6 @@ class QuestionMapperTest {
         assertEquals("EASY", questionDto.getDifficulty());
         assertTrue(CollectionUtils.isEqualCollection(List.of("STRING", "MATH"), questionDto.getTags()));
         assertEquals("TestDescription", questionDto.getDescription());
-        assertEquals("TestImports", questionDto.getImports());
         assertEquals("TestBody", questionDto.getBody());
         assertEquals("TestTest", questionDto.getTest());
     }

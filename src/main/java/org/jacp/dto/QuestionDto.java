@@ -19,7 +19,6 @@ public class QuestionDto {
     private String difficulty;
     private List<String> tags;
     private String description;
-    private String imports;
     private String body;
     private String test;
 }

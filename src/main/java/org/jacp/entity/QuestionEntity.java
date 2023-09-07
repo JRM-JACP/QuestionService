@@ -1,7 +1,10 @@
 package org.jacp.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.jacp.enums.Difficulty;
 import org.jacp.enums.Tags;
 
@@ -37,9 +40,6 @@ public class QuestionEntity {
 
     @Column(nullable = false)
     private String description;
-
-    @Column
-    private String imports;
 
     @Column(nullable = false)
     private String body;

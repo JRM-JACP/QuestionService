@@ -1,9 +1,9 @@
 package org.jacp.mapper;
 
 import org.jacp.dto.QuestionDto;
+import org.jacp.entity.QuestionEntity;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
-import org.jacp.entity.QuestionEntity;
 
 /**
  * @author saffchen created on 02.08.2023

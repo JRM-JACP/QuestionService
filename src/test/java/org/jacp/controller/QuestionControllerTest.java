@@ -56,7 +56,6 @@ class QuestionControllerTest {
         String problem = "TestProblem";
         Difficulty difficulty = Difficulty.EASY;
         String description = "TestDescription";
-        String imports = "TestImports";
         String body = "TestBody";
         String test = "TestTest";
         questionEntity.setId(questionId);
@@ -64,7 +63,6 @@ class QuestionControllerTest {
         questionEntity.setDifficulty(difficulty);
         questionEntity.setTags(tags);
         questionEntity.setDescription(description);
-        questionEntity.setImports(imports);
         questionEntity.setBody(body);
         questionEntity.setTest(test);
         questionDto.setId(questionId);
@@ -72,7 +70,6 @@ class QuestionControllerTest {
         questionDto.setDifficulty(difficulty.toString());
         questionDto.setTags(List.of(tags.toString()));
         questionDto.setDescription(description);
-        questionDto.setImports(imports);
         questionDto.setBody(body);
         questionDto.setTest(test);
 
@@ -86,7 +83,6 @@ class QuestionControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.difficulty").value(difficulty.toString()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.tags").value(tags.toString()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.description").value(description))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.imports").value(imports))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.body").value(body))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.test").value(test));
     }
