@@ -1,7 +1,6 @@
 package org.jacp.repository;
 
 import org.jacp.entity.ImportEntity;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,6 +11,4 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface ImportRepository extends BaseRepository<ImportEntity> {
 
-    @Query("select qi from ImportEntity qi")
-    ImportEntity getAll();
 }

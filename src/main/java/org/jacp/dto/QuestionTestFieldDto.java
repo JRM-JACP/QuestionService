@@ -5,15 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 /**
- * @author saffchen created on 06.09.2023
+ * @author saffchen created on 08.09.2023
  */
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ImportDto {
-    private List<String> imports;
+@Getter
+@Setter
+public class QuestionTestFieldDto {
+    private String test;
 }
