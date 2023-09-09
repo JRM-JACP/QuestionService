@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlGroup;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -24,7 +27,11 @@ public class ImportRepositoryTest extends AbstractIntegrationTestBase {
 
     @Test
     void getAllTest() {
-        ImportEntity importEntityTest = importRepository.getAll();
-        assertEquals("import lombok.AllArgsConstructor;", importEntityTest.getImports());
+        List<ImportEntity> importEntityTest = importRepository.findAll();
+        String imports = importEntityTest.stream()
+                .map(ImportEntity::getImports)
+                .map(Object::toString)
+                .collect(Collectors.joining());
+        assertEquals("import lombok.AllArgsConstructor;", imports);
     }
 }
