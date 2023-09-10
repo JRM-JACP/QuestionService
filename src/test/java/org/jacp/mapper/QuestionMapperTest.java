@@ -2,6 +2,7 @@ package org.jacp.mapper;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.jacp.dto.QuestionDto;
+import org.jacp.dto.QuestionTestFieldDto;
 import org.jacp.entity.QuestionEntity;
 import org.jacp.enums.Difficulty;
 import org.jacp.enums.Tags;
@@ -24,27 +25,32 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class QuestionMapperTest {
 
     @Mock
-    private QuestionEntity questionEntity;
+    private static QuestionEntity questionEntity;
 
     @InjectMocks
     private QuestionMapperImpl questionMapper;
 
     @Test
-    void questionToQuestionDto() {
+    void toQuestionDto() {
         Mockito.when(questionEntity.getId()).thenReturn(1L);
         Mockito.when(questionEntity.getProblem()).thenReturn("TestProblem");
         Mockito.when(questionEntity.getDifficulty()).thenReturn(Difficulty.EASY);
         Mockito.when(questionEntity.getTags()).thenReturn(List.of(Tags.MATH, Tags.STRING));
         Mockito.when(questionEntity.getDescription()).thenReturn("TestDescription");
         Mockito.when(questionEntity.getBody()).thenReturn("TestBody");
-        Mockito.when(questionEntity.getTest()).thenReturn("TestTest");
-        QuestionDto questionDto = questionMapper.questionToQuestionDto(questionEntity);
+        QuestionDto questionDto = questionMapper.toQuestionDto(questionEntity);
         assertEquals(1L, questionDto.getId());
         assertEquals("TestProblem", questionDto.getProblem());
         assertEquals("EASY", questionDto.getDifficulty());
         assertTrue(CollectionUtils.isEqualCollection(List.of("STRING", "MATH"), questionDto.getTags()));
         assertEquals("TestDescription", questionDto.getDescription());
         assertEquals("TestBody", questionDto.getBody());
-        assertEquals("TestTest", questionDto.getTest());
+    }
+
+    @Test
+    void toTestFieldQuestionDto() {
+        Mockito.when(questionEntity.getTest()).thenReturn("test import");
+        QuestionTestFieldDto questionDto = questionMapper.toTestFieldQuestionDto(questionEntity);
+        assertEquals("test import", questionDto.getTest());
     }
 }
