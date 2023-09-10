@@ -45,7 +45,7 @@ public class ImportController {
     @GetMapping("/{id}")
     public ResponseEntity<Map<String, String>> getAllImportsAndTest(@PathVariable Long id) {
         QuestionEntity questionEntity = questionService.get(id);
-        QuestionTestFieldDto questionTestFieldDto = questionMapper.toTestQuestionDto(questionEntity);
+        QuestionTestFieldDto questionTestFieldDto = questionMapper.toTestFieldQuestionDto(questionEntity);
         List<ImportEntity> importEntity = importService.getAll();
         List<ImportDto> importDto = importMapper.toImportDto(importEntity);
 
