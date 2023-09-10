@@ -11,7 +11,7 @@ import org.mapstruct.Mapper;
  */
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.FIELD)
 public interface QuestionMapper {
-    QuestionDto questionToQuestionDto(QuestionEntity questionEntity);
+    QuestionDto toQuestionDto(QuestionEntity questionEntity);
 
-    QuestionTestFieldDto toTestQuestionDto(QuestionEntity questionEntity);
+    QuestionTestFieldDto toTestFieldQuestionDto(QuestionEntity questionEntity);
 }
