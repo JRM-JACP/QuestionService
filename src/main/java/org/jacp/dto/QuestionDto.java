@@ -20,5 +20,4 @@ public class QuestionDto {
     private List<String> tags;
     private String description;
     private String body;
-    private String test;
 }
