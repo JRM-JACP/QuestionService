@@ -57,24 +57,21 @@ class QuestionControllerTest {
         Difficulty difficulty = Difficulty.EASY;
         String description = "TestDescription";
         String body = "TestBody";
-        String test = "TestTest";
         questionEntity.setId(questionId);
         questionEntity.setProblem(problem);
         questionEntity.setDifficulty(difficulty);
         questionEntity.setTags(tags);
         questionEntity.setDescription(description);
         questionEntity.setBody(body);
-        questionEntity.setTest(test);
         questionDto.setId(questionId);
         questionDto.setProblem(problem);
         questionDto.setDifficulty(difficulty.toString());
         questionDto.setTags(List.of(tags.toString()));
         questionDto.setDescription(description);
         questionDto.setBody(body);
-        questionDto.setTest(test);
 
         Mockito.when(questionService.get(questionId)).thenReturn(questionEntity);
-        Mockito.when(questionMapper.questionToQuestionDto(questionEntity)).thenReturn(questionDto);
+        Mockito.when(questionMapper.toQuestionDto(questionEntity)).thenReturn(questionDto);
 
         mockMvc.perform(MockMvcRequestBuilders.get(URL + "/" + questionId))
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -83,7 +80,6 @@ class QuestionControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.difficulty").value(difficulty.toString()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.tags").value(tags.toString()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.description").value(description))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.body").value(body))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.test").value(test));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.body").value(body));
     }
 }
