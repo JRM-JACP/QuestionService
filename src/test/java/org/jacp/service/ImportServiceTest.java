@@ -59,12 +59,12 @@ public class ImportServiceTest {
         List<ImportEntity> result = importService.getAll();
         String resultString = result.stream()
                 .map(ImportEntity::getImports)
-                .map(Objects::toString)
+                .map(Object::toString)
                 .collect(Collectors.joining());
 
         String expectedString = expectedEntity.stream()
                 .map(ImportEntity::getImports)
-                .map(Objects::toString)
+                .map(Object::toString)
                 .collect(Collectors.joining());
 
         Assertions.assertEquals(expectedString, resultString);

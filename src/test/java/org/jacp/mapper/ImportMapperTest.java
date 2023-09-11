@@ -40,14 +40,14 @@ public class ImportMapperTest {
 
         String expectedImports = expectedImportDto.stream()
                 .map(ImportDto::getImports)
-                .map(Objects::toString)
+                .map(Object::toString)
                 .collect(Collectors.joining());
 
         List<ImportDto> actualImportDto = importMapper.toImportDto(importEntity);
 
         String actualImports = actualImportDto.stream()
                 .map(ImportDto::getImports)
-                .map(Objects::toString)
+                .map(Object::toString)
                 .collect(Collectors.joining());
 
         assertEquals(expectedImports, actualImports);
