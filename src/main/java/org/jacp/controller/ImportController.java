@@ -1,11 +1,9 @@
 package org.jacp.controller;
 
-import org.jacp.dto.ImportDto;
-import org.jacp.dto.QuestionTestFieldDto;
+import org.jacp.dto.ResultDto;
 import org.jacp.entity.ImportEntity;
 import org.jacp.entity.QuestionEntity;
-import org.jacp.mapper.ImportMapper;
-import org.jacp.mapper.QuestionMapper;
+import org.jacp.mapper.ResultTestImportsMapper;
 import org.jacp.service.ImportService;
 import org.jacp.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -37,26 +33,19 @@ public class ImportController {
     QuestionService questionService;
 
     @Autowired
-    ImportMapper importMapper;
-
-    @Autowired
-    QuestionMapper questionMapper;
+    ResultTestImportsMapper resultMapper;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Map<String, String>> getAllImportsAndTest(@PathVariable Long id) {
+    public ResponseEntity<ResultDto> getAllImportsAndTest(@PathVariable Long id) {
         QuestionEntity questionEntity = questionService.get(id);
-        QuestionTestFieldDto questionTestFieldDto = questionMapper.toTestFieldQuestionDto(questionEntity);
-        List<ImportEntity> importEntity = importService.getAll();
-        List<ImportDto> importDto = importMapper.toImportDto(importEntity);
+        List<ImportEntity> importEntities = importService.getAll();
 
-        Map<String, String> result = new HashMap<>();
-        String imports = importDto.stream()
-                .map(ImportDto::getImports)
+        String imports = importEntities.stream()
+                .map(ImportEntity::getImports)
                 .map(Object::toString)
-                .map(s -> s.replace("[", "").replace("]", "; "))
-                .collect(Collectors.joining());
-        result.put("imports", imports);
-        result.put("test", questionTestFieldDto.getTest());
+                .collect(Collectors.joining(" "));
+
+        ResultDto result = resultMapper.toResult(imports, questionEntity.getTest());
 
         return ResponseEntity.ok(result);
     }

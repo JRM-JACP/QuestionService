@@ -15,5 +15,5 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ImportDto {
-    private List<String> imports;
+    private String imports;
 }

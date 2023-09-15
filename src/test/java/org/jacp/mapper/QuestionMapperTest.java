@@ -2,7 +2,6 @@ package org.jacp.mapper;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.jacp.dto.QuestionDto;
-import org.jacp.dto.QuestionTestFieldDto;
 import org.jacp.entity.QuestionEntity;
 import org.jacp.enums.Difficulty;
 import org.jacp.enums.Tags;
@@ -45,12 +44,5 @@ class QuestionMapperTest {
         assertTrue(CollectionUtils.isEqualCollection(List.of("STRING", "MATH"), questionDto.getTags()));
         assertEquals("TestDescription", questionDto.getDescription());
         assertEquals("TestBody", questionDto.getBody());
-    }
-
-    @Test
-    void toTestFieldQuestionDto() {
-        when(questionEntity.getTest()).thenReturn("test import");
-        QuestionTestFieldDto questionDto = questionMapper.toTestFieldQuestionDto(questionEntity);
-        assertEquals("test import", questionDto.getTest());
     }
 }
