@@ -6,12 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * @author saffchen created on 08.09.2023
+ * @author saffchen created on 15.09.2023
  */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class QuestionTestFieldDto {
+public class ResultDto {
+    private String imports;
     private String test;
 }
