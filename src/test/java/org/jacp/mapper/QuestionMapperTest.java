@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
 class QuestionMapperTest {
 
     @Mock
-    private static QuestionEntity questionEntity;
+    private QuestionEntity questionEntity;
 
     @InjectMocks
     private QuestionMapperImpl questionMapper;
