@@ -1,10 +1,12 @@
 package org.jacp.controller;
 
-import org.jacp.dto.QuestionDto;
+import org.jacp.dto.ResultDto;
+import org.jacp.entity.ImportEntity;
 import org.jacp.entity.QuestionEntity;
 import org.jacp.enums.Difficulty;
 import org.jacp.enums.Tags;
-import org.jacp.mapper.QuestionMapper;
+import org.jacp.mapper.ResultTestImportsMapper;
+import org.jacp.service.ImportService;
 import org.jacp.service.QuestionService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,35 +22,47 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.mockito.Mockito.verify;
 
 /**
- * @author saffchen created on 10.08.2023
+ * @author saffchen created on 07.09.2023
  */
 @ExtendWith(MockitoExtension.class)
-class QuestionControllerTest {
+public class ImportControllerTest {
 
-    static final String URL = "/api/v1/questions";
+    static final String URL = "/api/v1/imports";
 
     @Mock
-    private QuestionMapper questionMapper;
+    private ImportService importService;
 
     @Mock
     private QuestionService questionService;
 
+    @Mock
+    private ResultTestImportsMapper resultMapper;
+
     @InjectMocks
-    private QuestionController questionController;
+    private ImportController controller;
 
     private MockMvc mockMvc;
 
     @BeforeEach
     public void setup() {
-        mockMvc = MockMvcBuilders.standaloneSetup(questionController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
     @Test
-    void getQuestionByIdTest() throws Exception {
+    void getAllImports() throws Exception {
+
+        List<ImportEntity> importEntities = new ArrayList<>();
+        ImportEntity importEntity1 = new ImportEntity(1L, "import1");
+        ImportEntity importEntity2 = new ImportEntity(2L, "import2");
+        importEntities.add(importEntity1);
+        importEntities.add(importEntity2);
+
         QuestionEntity questionEntity = new QuestionEntity();
-        QuestionDto questionDto = new QuestionDto();
         List<Tags> tags = new ArrayList<>();
         tags.add(Tags.MATH);
         tags.add(Tags.STRING);
@@ -57,29 +71,32 @@ class QuestionControllerTest {
         Difficulty difficulty = Difficulty.EASY;
         String description = "TestDescription";
         String body = "TestBody";
+        String test = "Test";
         questionEntity.setId(questionId);
         questionEntity.setProblem(problem);
         questionEntity.setDifficulty(difficulty);
         questionEntity.setTags(tags);
         questionEntity.setDescription(description);
         questionEntity.setBody(body);
-        questionDto.setId(questionId);
-        questionDto.setProblem(problem);
-        questionDto.setDifficulty(difficulty.toString());
-        questionDto.setTags(List.of(tags.toString()));
-        questionDto.setDescription(description);
-        questionDto.setBody(body);
+        questionEntity.setTest(test);
 
+        Mockito.when(importService.getAll()).thenReturn(importEntities);
         Mockito.when(questionService.get(questionId)).thenReturn(questionEntity);
-        Mockito.when(questionMapper.toQuestionDto(questionEntity)).thenReturn(questionDto);
+
+        String resultImport = importEntities.stream()
+                .map(ImportEntity::getImports)
+                .map(Object::toString)
+                .collect(Collectors.joining(" "));
+
+        ResultDto expectedResult = new ResultDto(resultImport, test);
+        Mockito.when(resultMapper.toResult(resultImport, test)).thenReturn(expectedResult);
 
         mockMvc.perform(MockMvcRequestBuilders.get(URL + "/" + questionId))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(questionId))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.problem").value(problem))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.difficulty").value(difficulty.toString()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.tags").value(tags.toString()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.description").value(description))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.body").value(body));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.imports").value(resultImport))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.test").value(questionEntity.getTest()));
+
+        verify(questionService).get(questionId);
+        verify(importService).getAll();
     }
 }

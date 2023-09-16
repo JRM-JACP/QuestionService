@@ -1,10 +1,10 @@
 package org.jacp.service;
 
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.jacp.entity.QuestionEntity;
-import org.jacp.repository.QuestionRepository;
 import org.jacp.error.NoEntityException;
+import org.jacp.repository.QuestionRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * @author saffchen created on 01.08.2023

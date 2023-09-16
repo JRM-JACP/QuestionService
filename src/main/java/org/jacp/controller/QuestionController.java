@@ -18,7 +18,7 @@ public class QuestionController extends AbstractQuestionController {
     @GetMapping("/{questionId}")
     public ResponseEntity<QuestionDto> get(@PathVariable Long questionId) {
         QuestionEntity questionEntity = questionService.get(questionId);
-        QuestionDto questionDto = mapper.questionToQuestionDto(questionEntity);
+        QuestionDto questionDto = mapper.toQuestionDto(questionEntity);
         return ResponseEntity.ok(questionDto);
     }
 }

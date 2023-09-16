@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-table-question-imports
+      author: Denis
+      changes:
+        - loadData:
+            separator: /
+            usePreparedStatements: true
+            tableName: question_imports
+            file: db/changelog/question_imports.csv
+            columns:
+              - column:
+                  header: Imports
+                  name: imports
+                  type: varchar(800)
