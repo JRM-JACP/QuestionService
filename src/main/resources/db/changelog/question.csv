@@ -1,2 +1,2 @@
 Problem/Difficulty/Tags/Description/Body/Test
-MakeUpperCase/EASY/STRING/Write a function which converts the input string to uppercase./class Upper{public static String MakeUpperCase(String str){}}/public class SolutionTest {Upper u = new Upper(); @Test public void testSomething() {assertEquals("HELLO",u.MakeUpperCase("hello"));}}
+MakeUpperCase/EASY/STRING/Write a function which converts the input string to uppercase./public class Upper{public static String MakeUpperCase(String str){}}/public class SolutionTest {Upper u = new Upper(); @Test public void testSomething() {assertEquals("HELLO",u.MakeUpperCase("hello"));}}

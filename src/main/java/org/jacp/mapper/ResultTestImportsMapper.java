@@ -9,5 +9,5 @@ import org.mapstruct.Mapper;
  */
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.FIELD)
 public interface ResultTestImportsMapper {
-    ResultDto toResult(String imports, String test);
+    ResultDto toResult(String imports, String testImports, String test);
 }
