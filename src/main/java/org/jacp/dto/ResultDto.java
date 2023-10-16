@@ -14,5 +14,6 @@ import lombok.Setter;
 @Setter
 public class ResultDto {
     private String imports;
+    private String testImports;
     private String test;
 }

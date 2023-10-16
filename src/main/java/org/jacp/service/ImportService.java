@@ -2,7 +2,9 @@ package org.jacp.service;
 
 import lombok.AllArgsConstructor;
 import org.jacp.entity.ImportEntity;
+import org.jacp.entity.TestImportEntity;
 import org.jacp.repository.ImportRepository;
+import org.jacp.repository.TestImportRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,8 +17,13 @@ import java.util.List;
 public class ImportService {
 
     private final ImportRepository repository;
+    private final TestImportRepository testImportRepository;
 
-    public List<ImportEntity> getAll() {
+    public List<ImportEntity> getAllImports() {
         return repository.findAll();
+    }
+
+    public List<TestImportEntity> getAllTestImports() {
+        return testImportRepository.findAll();
     }
 }

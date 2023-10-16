@@ -3,6 +3,7 @@ package org.jacp.controller;
 import org.jacp.dto.ResultDto;
 import org.jacp.entity.ImportEntity;
 import org.jacp.entity.QuestionEntity;
+import org.jacp.entity.TestImportEntity;
 import org.jacp.mapper.ResultTestImportsMapper;
 import org.jacp.service.ImportService;
 import org.jacp.service.QuestionService;
@@ -38,14 +39,20 @@ public class ImportController {
     @GetMapping("/{id}")
     public ResponseEntity<ResultDto> getAllImportsAndTest(@PathVariable Long id) {
         QuestionEntity questionEntity = questionService.get(id);
-        List<ImportEntity> importEntities = importService.getAll();
+        List<ImportEntity> importEntities = importService.getAllImports();
+        List<TestImportEntity> importTestEntities = importService.getAllTestImports();
 
         String imports = importEntities.stream()
                 .map(ImportEntity::getImports)
                 .map(Object::toString)
                 .collect(Collectors.joining(" "));
 
-        ResultDto result = resultMapper.toResult(imports, questionEntity.getTest());
+        String testImports = importTestEntities.stream()
+                .map(TestImportEntity::getImports)
+                .map(Object::toString)
+                .collect(Collectors.joining(" "));
+
+        ResultDto result = resultMapper.toResult(imports, testImports, questionEntity.getTest());
 
         return ResponseEntity.ok(result);
     }

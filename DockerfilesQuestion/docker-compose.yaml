@@ -25,4 +25,4 @@ services:
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
     ports:
-      - '8081:8080'
+      - '8082:8080'
