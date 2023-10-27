@@ -137,7 +137,7 @@
                         </goals>
                         <phase>install</phase>
                         <configuration>
-                            <outputDirectory>${project.basedir}/Dockerfiles/QuestionService</outputDirectory>
+                            <outputDirectory>DockerfilesQuestion/QuestionService</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>${project.basedir}/target</directory>

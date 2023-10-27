@@ -4,4 +4,10 @@ databaseChangeLog:
   - include:
       file: db/changelog/changeset/init/02-init-problem-tags.yaml
   - include:
+      file: db/changelog/changeset/init/03-init-problem-imports.yaml
+  - include:
+      file: db/changelog/changeset/init/04-init-problem-test-imports.yaml
+  - include:
       file: db/changelog/changeset/fill/01-fill-problem.yaml
+  - include:
+      file: db/changelog/changeset/fill/02-fill-import.yaml

@@ -36,9 +36,6 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: imports
-                  type: varchar(800)
-              - column:
                   name: body
                   type: varchar(800)
                   constraints:

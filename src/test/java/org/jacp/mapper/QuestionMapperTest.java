@@ -9,13 +9,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
 
 /**
  * @author saffchen created on 10.08.2023
@@ -30,23 +30,19 @@ class QuestionMapperTest {
     private QuestionMapperImpl questionMapper;
 
     @Test
-    void questionToQuestionDto() {
-        Mockito.when(questionEntity.getId()).thenReturn(1L);
-        Mockito.when(questionEntity.getProblem()).thenReturn("TestProblem");
-        Mockito.when(questionEntity.getDifficulty()).thenReturn(Difficulty.EASY);
-        Mockito.when(questionEntity.getTags()).thenReturn(List.of(Tags.MATH, Tags.STRING));
-        Mockito.when(questionEntity.getDescription()).thenReturn("TestDescription");
-        Mockito.when(questionEntity.getImports()).thenReturn("TestImports");
-        Mockito.when(questionEntity.getBody()).thenReturn("TestBody");
-        Mockito.when(questionEntity.getTest()).thenReturn("TestTest");
-        QuestionDto questionDto = questionMapper.questionToQuestionDto(questionEntity);
+    void toQuestionDto() {
+        when(questionEntity.getId()).thenReturn(1L);
+        when(questionEntity.getProblem()).thenReturn("TestProblem");
+        when(questionEntity.getDifficulty()).thenReturn(Difficulty.EASY);
+        when(questionEntity.getTags()).thenReturn(List.of(Tags.MATH, Tags.STRING));
+        when(questionEntity.getDescription()).thenReturn("TestDescription");
+        when(questionEntity.getBody()).thenReturn("TestBody");
+        QuestionDto questionDto = questionMapper.toQuestionDto(questionEntity);
         assertEquals(1L, questionDto.getId());
         assertEquals("TestProblem", questionDto.getProblem());
         assertEquals("EASY", questionDto.getDifficulty());
         assertTrue(CollectionUtils.isEqualCollection(List.of("STRING", "MATH"), questionDto.getTags()));
         assertEquals("TestDescription", questionDto.getDescription());
-        assertEquals("TestImports", questionDto.getImports());
         assertEquals("TestBody", questionDto.getBody());
-        assertEquals("TestTest", questionDto.getTest());
     }
 }

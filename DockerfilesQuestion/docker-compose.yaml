@@ -1,6 +1,7 @@
 version: '3.8'
 services:
   postgres:
+    container_name: QuestionPostgres
     image: postgres:14.4-alpine
     environment:
       - POSTGRES_USER=postgres
@@ -12,6 +13,7 @@ services:
       - ./db/init:/docker-entrypoint-initdb.d/
     ports:
       - '5432:5432'
+
   app:
     container_name: QuestionServiceApp
     build:
@@ -23,4 +25,4 @@ services:
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
     ports:
-      - '8080:8080'
+      - '8082:8080'

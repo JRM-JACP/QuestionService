@@ -9,10 +9,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +22,7 @@ import java.util.Optional;
 /**
  * @author saffchen created on 10.08.2023
  */
+@ExtendWith(MockitoExtension.class)
 class QuestionServiceTest {
     @Mock
     private QuestionRepository questionRepository;
@@ -38,7 +41,6 @@ class QuestionServiceTest {
     static Difficulty difficulty = Difficulty.EASY;
     static List<Tags> tags = List.of(Tags.MATH, Tags.STRING);
     static String description = "TestDescription";
-    static String imports = "TestImports";
     static String body = "TestBody";
     static String test = "TestTest";
 
@@ -50,7 +52,6 @@ class QuestionServiceTest {
         questionEntity.setDifficulty(difficulty);
         questionEntity.setTags(tags);
         questionEntity.setDescription(description);
-        questionEntity.setImports(imports);
         questionEntity.setBody(body);
         questionEntity.setTest(test);
     }
