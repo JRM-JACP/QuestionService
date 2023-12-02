@@ -26,7 +26,6 @@ import java.util.stream.Collectors;
 public class ImportController {
 
     static final String URL = "/api/v1/imports";
-
     @Autowired
     ImportService importService;
 

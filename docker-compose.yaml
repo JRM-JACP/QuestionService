@@ -17,7 +17,7 @@ services:
   app:
     container_name: QuestionServiceApp
     build:
-      context: ./QuestionService
+      context: Question/QuestionService
     depends_on:
       - postgres
     environment:

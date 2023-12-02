@@ -55,8 +55,8 @@ public class ImportServiceTest {
                 new ImportEntity(id3, imports3)
         );
 
-        Mockito.when(importService.getAll()).thenReturn(importEntity);
-        List<ImportEntity> result = importService.getAll();
+        Mockito.when(importService.getAllImports()).thenReturn(importEntity);
+        List<ImportEntity> result = importService.getAllImports();
         String resultString = result.stream()
                 .map(ImportEntity::getImports)
                 .map(Object::toString)
