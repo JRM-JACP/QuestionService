@@ -2,3 +2,5 @@ Imports
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.jacp.Solution;
+import org.junit.Test;
+import org.junit.runners.JUnit4;
