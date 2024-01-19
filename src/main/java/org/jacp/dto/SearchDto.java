@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.jacp.enums.Difficulty;
 import org.jacp.enums.Tags;
 
+import java.util.List;
+
 /**
  * @author saffchen created on 17.12.2023
  */
@@ -17,5 +19,5 @@ import org.jacp.enums.Tags;
 public class SearchDto {
     private int limitTasks;
     private Difficulty difficulty;
-    private Tags tagsList;
+    private List<Tags> tagsList;
 }
