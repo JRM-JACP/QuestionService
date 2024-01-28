@@ -48,7 +48,7 @@ public class QuestionRepositoryCriteria {
         }
 
         criteriaQuery.orderBy(criteriaBuilder.asc(
-                criteriaBuilder.function("random", Double.class)
+                criteriaBuilder.function("random", Integer.class)
         ));
 
         List<QuestionEntity> resultList = entityManager.createQuery(criteriaQuery)
