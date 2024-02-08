@@ -27,13 +27,13 @@ public class ImportController {
 
     static final String URL = "/api/v1/imports";
     @Autowired
-    ImportService importService;
+    private ImportService importService;
 
     @Autowired
-    QuestionService questionService;
+    private QuestionService questionService;
 
     @Autowired
-    ResultTestImportsMapper resultMapper;
+    private ResultTestImportsMapper resultMapper;
 
     @GetMapping("/{id}")
     public ResponseEntity<ResultDto> getAllImportsAndTest(@PathVariable Long id) {
