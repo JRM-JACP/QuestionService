@@ -25,7 +25,7 @@ public class QuestionRepositoryCriteria {
         this.entityManager = entityManager;
     }
 
-    public Optional<List<QuestionEntity>> findByFilter(Pageable pageable, Difficulty difficulty, List<Tags> tags) {
+    public List<QuestionEntity> findByFilter(Pageable pageable, Difficulty difficulty, List<Tags> tags) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<QuestionEntity> criteriaQuery = criteriaBuilder.createQuery(QuestionEntity.class);
         Root<QuestionEntity> root = criteriaQuery.from(QuestionEntity.class);
@@ -51,11 +51,9 @@ public class QuestionRepositoryCriteria {
                 criteriaBuilder.function("random", Integer.class)
         ));
 
-        List<QuestionEntity> resultList = entityManager.createQuery(criteriaQuery)
+        return entityManager.createQuery(criteriaQuery)
                 .setFirstResult((int) pageable.getOffset())
                 .setMaxResults(pageable.getPageSize())
                 .getResultList();
-
-        return Optional.ofNullable(resultList);
     }
 }
