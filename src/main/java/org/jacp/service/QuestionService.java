@@ -6,8 +6,6 @@ import org.jacp.entity.QuestionEntity;
 import org.jacp.error.NoEntityException;
 import org.jacp.repository.QuestionRepository;
 import org.jacp.repository.QuestionRepositoryCriteria;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,9 +27,7 @@ public class QuestionService {
     }
 
     public List<QuestionEntity> getFilter(SearchDto searchDto) {
-        Pageable pageable = PageRequest.of(0, searchDto.getLimitTasks());
-        return questionRepositoryCriteria.findByFilter(pageable, searchDto.getDifficulty(), searchDto.getTagsList())
-                .orElseThrow(() -> new NoEntityException("Question with difficulty " + searchDto.getDifficulty() +
-                        " or tags " + searchDto.getTagsList() + " is not found"));
+        return questionRepositoryCriteria
+                .findByFilter(searchDto.getLimitTasks(), searchDto.getDifficulty(), searchDto.getTagsList());
     }
 }

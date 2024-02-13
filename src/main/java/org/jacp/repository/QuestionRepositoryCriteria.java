@@ -6,7 +6,6 @@ import jakarta.persistence.criteria.*;
 import org.jacp.entity.QuestionEntity;
 import org.jacp.enums.Difficulty;
 import org.jacp.enums.Tags;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,7 +23,7 @@ public class QuestionRepositoryCriteria {
         this.entityManager = entityManager;
     }
 
-    public List<QuestionEntity> findByFilter(Pageable pageable, Difficulty difficulty, List<Tags> tags) {
+    public List<QuestionEntity> findByFilter(int limitTask, Difficulty difficulty, List<Tags> tags) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<QuestionEntity> criteriaQuery = criteriaBuilder.createQuery(QuestionEntity.class);
         Root<QuestionEntity> root = criteriaQuery.from(QuestionEntity.class);
@@ -51,8 +50,7 @@ public class QuestionRepositoryCriteria {
         ));
 
         return entityManager.createQuery(criteriaQuery)
-                .setFirstResult((int) pageable.getOffset())
-                .setMaxResults(pageable.getPageSize())
+                .setMaxResults(limitTask)
                 .getResultList();
     }
 }
