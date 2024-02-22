@@ -45,12 +45,11 @@ public class QuestionRepositoryCriteria {
             }
         }
 
-        criteriaQuery.orderBy(criteriaBuilder.asc(
-                criteriaBuilder.function("random", Integer.class)
-        ));
-
-        return entityManager.createQuery(criteriaQuery)
+        List<QuestionEntity> resultList = entityManager.createQuery(criteriaQuery)
                 .setMaxResults(limitTask)
                 .getResultList();
+
+        Collections.shuffle(resultList);
+        return resultList;
     }
 }
