@@ -26,15 +26,14 @@ import java.util.stream.Collectors;
 public class ImportController {
 
     static final String URL = "/api/v1/imports";
+    @Autowired
+    private ImportService importService;
 
     @Autowired
-    ImportService importService;
+    private QuestionService questionService;
 
     @Autowired
-    QuestionService questionService;
-
-    @Autowired
-    ResultTestImportsMapper resultMapper;
+    private ResultTestImportsMapper resultMapper;
 
     @GetMapping("/{id}")
     public ResponseEntity<ResultDto> getAllImportsAndTest(@PathVariable Long id) {
