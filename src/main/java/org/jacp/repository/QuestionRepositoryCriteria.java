@@ -8,6 +8,7 @@ import org.jacp.enums.Difficulty;
 import org.jacp.enums.Tags;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
