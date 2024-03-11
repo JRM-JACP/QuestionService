@@ -30,4 +30,8 @@ public class QuestionService {
         return questionRepositoryCriteria
                 .findByFilter(searchDto.getLimitTasks(), searchDto.getDifficulty(), searchDto.getTagsList());
     }
+
+    public List<QuestionEntity> getTasks(List<Long> id){
+        return questionRepository.getTasks(id);
+    }
 }

@@ -31,4 +31,11 @@ public class QuestionController extends AbstractQuestionController {
         List<QuestionDto> questionDto = mapper.toListQuestionDto(questionEntity);
         return ResponseEntity.ok(questionDto);
     }
+
+    @PostMapping("/getTasksList")
+    public ResponseEntity<List<QuestionDto>> getTasksCurrentCompetition(@RequestBody List<Long> questionIds){
+        List<QuestionEntity> questionEntity = questionService.getTasks(questionIds);
+        List<QuestionDto> questionDto = mapper.toListQuestionDto(questionEntity);
+        return ResponseEntity.ok(questionDto);
+    }
 }
