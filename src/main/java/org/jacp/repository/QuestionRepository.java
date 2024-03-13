@@ -4,6 +4,7 @@ import org.jacp.entity.QuestionEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -14,4 +15,6 @@ import java.util.Optional;
 public interface QuestionRepository extends BaseRepository<QuestionEntity> {
     @Override
     Optional<QuestionEntity> findById(Long id);
+
+    List<QuestionEntity> findByIdIn(List<Long> ids);
 }

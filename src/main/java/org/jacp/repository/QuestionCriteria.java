@@ -15,12 +15,12 @@ import java.util.List;
  * @author saffchen created on 17.01.2024
  */
 @Repository
-public class QuestionRepositoryCriteria {
+public class QuestionCriteria {
 
     @PersistenceContext
     private final EntityManager entityManager;
 
-    public QuestionRepositoryCriteria(EntityManager entityManager) {
+    public QuestionCriteria(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
