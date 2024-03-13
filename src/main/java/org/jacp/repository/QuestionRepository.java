@@ -16,5 +16,5 @@ public interface QuestionRepository extends BaseRepository<QuestionEntity> {
     @Override
     Optional<QuestionEntity> findById(Long id);
 
-    List<QuestionEntity> findByIdIn(List<Long> id);
+    List<QuestionEntity> findByIdIn(List<Long> ids);
 }
