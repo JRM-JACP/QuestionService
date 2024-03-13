@@ -26,16 +26,16 @@ public class QuestionController extends AbstractQuestionController {
     }
 
     @PostMapping("/filter")
-    public ResponseEntity<List<QuestionDto>> getQuestionFilter(@RequestBody SearchDto searchDto) {
-        List<QuestionEntity> questionEntity = questionService.getFilter(searchDto);
-        List<QuestionDto> questionDto = mapper.toListQuestionDto(questionEntity);
-        return ResponseEntity.ok(questionDto);
+    public ResponseEntity<List<QuestionDto>> getQuestionByFilter(@RequestBody SearchDto searchDto) {
+        List<QuestionEntity> questionEntities = questionService.getFilter(searchDto);
+        List<QuestionDto> questionDtos = mapper.toListQuestionDto(questionEntities);
+        return ResponseEntity.ok(questionDtos);
     }
 
-    @PostMapping("/getTasksList")
-    public ResponseEntity<List<QuestionDto>> getTasksCurrentCompetition(@RequestBody List<Long> questionIds){
-        List<QuestionEntity> questionEntity = questionService.getTasks(questionIds);
-        List<QuestionDto> questionDto = mapper.toListQuestionDto(questionEntity);
-        return ResponseEntity.ok(questionDto);
+    @GetMapping
+    public ResponseEntity<List<QuestionDto>> getQuestionsByIds(@RequestParam("ids") List<Long> ids) {
+        List<QuestionEntity> questionEntities = questionService.getQuestionsByIds(ids);
+        List<QuestionDto> questionDtos = mapper.toListQuestionDto(questionEntities);
+        return ResponseEntity.ok(questionDtos);
     }
 }

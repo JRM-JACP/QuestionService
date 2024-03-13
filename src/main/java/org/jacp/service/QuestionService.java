@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import org.jacp.dto.SearchDto;
 import org.jacp.entity.QuestionEntity;
 import org.jacp.error.NoEntityException;
+import org.jacp.repository.QuestionCriteria;
 import org.jacp.repository.QuestionRepository;
-import org.jacp.repository.QuestionRepositoryCriteria;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +19,7 @@ public class QuestionService {
 
     private QuestionRepository questionRepository;
 
-    private QuestionRepositoryCriteria questionRepositoryCriteria;
+    private QuestionCriteria questionCriteria;
 
     public QuestionEntity get(Long id) throws NoEntityException {
         return questionRepository.findById(id)
@@ -27,11 +27,11 @@ public class QuestionService {
     }
 
     public List<QuestionEntity> getFilter(SearchDto searchDto) {
-        return questionRepositoryCriteria
+        return questionCriteria
                 .findByFilter(searchDto.getLimitTasks(), searchDto.getDifficulty(), searchDto.getTagsList());
     }
 
-    public List<QuestionEntity> getTasks(List<Long> id){
-        return questionRepository.getTasks(id);
+    public List<QuestionEntity> getQuestionsByIds(List<Long> ids) {
+        return questionRepository.findByIdIn(ids);
     }
 }
